@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -12,10 +14,21 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-    },
-    fontFamily: {
-      main: ["Mulish", "sans-serif"],
+      fontFamily: {
+        main: ["Mulish", "sans-serif"],
+        ...defaultTheme.fontFamily,
+      },
     },
   },
-  plugins: [],
+  variants: {
+    extend: {
+      // Add the animation variant here:
+      animation: ["responsive", "motion-safe", "motion-reduce"],
+    },
+  },
+  plugins: [
+    // Add your plugins here:
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };

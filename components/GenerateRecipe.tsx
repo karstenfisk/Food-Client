@@ -1,12 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import instance from "@/instance";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import createToken from "../token";
 
 interface Macros {
   carbs: string | null;
   protein: string | null;
   fats: string | null;
-  calories: number | null;
+  calories: string | null;
 }
 
 interface Recipe {
@@ -31,6 +34,8 @@ function GenerateRecipe() {
   const [mealType, setMealType] = useState("Any");
   const [radioValue, setRadioValue] = useState("Any");
 
+  const router = useRouter();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -41,13 +46,11 @@ function GenerateRecipe() {
           : null,
       carbs:
         carbs !== 0
-          ? `approximately ${carbs} grams of protein per serving, `
+          ? `approximately ${carbs} grams of carbs per serving, `
           : null,
       fats:
-        fat !== 0
-          ? `approximately ${fat} grams of protein per serving, `
-          : null,
-      calories: calories !== 0 ? calories : null,
+        fat !== 0 ? `approximately ${fat} grams of fat per serving, ` : null,
+      calories: calories !== 0 ? `calories` : null,
     };
 
     const recipe: Recipe = {
@@ -59,12 +62,15 @@ function GenerateRecipe() {
       servings,
       type: mealType,
     };
-    try {
-      const { data } = await instance.post("/meals/generate", recipe);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+    const token = createToken({ recipe: JSON.stringify(recipe) });
+    router.push(`/meals/recipe?recipe=${token}`);
+
+    // try {
+    //   const { data } = await instance.post("/meals/generate", recipe);
+    //   console.log(data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   return (
     <form
