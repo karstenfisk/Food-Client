@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import instance from "@/instance";
+import { AxiosError } from "axios";
 
 interface Macros {
   carbs: string | null;
@@ -38,11 +39,11 @@ const SaveButton: React.FC<SaveButtonProps> = ({ token, meal }) => {
       if (response.status === 200) {
         // Saving was successful
         console.log("Meal saved successfully!");
-      } else {
-        // Saving failed
-        console.error("Failed to save meal.");
       }
-    } catch (error) {
+    } catch (error: AxiosError | any) {
+      if (error?.response?.data?.error === "Recipe already exists") {
+        alert("Recipe has already been saved!");
+      }
       console.error("Error saving meal:", error);
     }
   };
