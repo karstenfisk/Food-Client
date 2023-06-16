@@ -17,6 +17,12 @@ export default function Navbar() {
         {status === "loading" ? null : session?.user ? (
           <>
             <Link
+              href="/meals/saved"
+              className="font-semibold underline-offset-2 hover:text-sky-600  px-4"
+            >
+              Saved Meals
+            </Link>
+            <Link
               href="/meals/generate"
               className="font-semibold underline-offset-2 hover:text-sky-600  px-4"
             >
@@ -31,12 +37,6 @@ export default function Navbar() {
           </>
         ) : (
           <>
-            <Link
-              href="/meals/generate"
-              className="font-semibold underline-offset-2 hover:text-sky-600  px-4"
-            >
-              Generate Meal
-            </Link>
             <button
               onClick={() => signIn()}
               className="underline underline-offset-2 hover:text-sky-600 px-4"

@@ -25,10 +25,13 @@ interface SaveButtonProps {
 const SaveButton: React.FC<SaveButtonProps> = ({ token, meal }) => {
   const handleSave = async () => {
     try {
+      console.log(meal);
       // Make the API request to save the meal
       const response = await instance.post(
         `/meals/save`,
-        { recipe: meal },
+        {
+          recipe: meal,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
