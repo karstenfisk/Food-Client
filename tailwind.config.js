@@ -18,6 +18,9 @@ module.exports = {
         main: ["Mulish", "sans-serif"],
         ...defaultTheme.fontFamily,
       },
+      maxWidth: {
+        "5/12": "41.666667%",
+      },
     },
   },
   variants: {
