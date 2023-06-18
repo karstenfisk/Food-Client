@@ -21,6 +21,7 @@ interface Meal {
   updatedAt: string;
   userId: string;
 }
+
 async function getRecipes(): Promise<Meal[] | null> {
   const session: Session | null = await getServerSession(authOptions);
   if (!session) {
