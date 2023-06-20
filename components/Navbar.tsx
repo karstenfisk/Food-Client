@@ -17,6 +17,12 @@ export default function Navbar() {
         {status === "loading" ? null : session?.user ? (
           <>
             <Link
+              href="/meals/ingredients"
+              className="font-semibold underline-offset-2 hover:text-sky-600  px-4"
+            >
+              Ingredients
+            </Link>
+            <Link
               href="/meals/saved"
               className="font-semibold underline-offset-2 hover:text-sky-600  px-4"
             >

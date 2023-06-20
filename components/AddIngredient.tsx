@@ -1,14 +1,17 @@
 "use client";
 import React, { useState } from "react";
+import instance from "@/instance";
 
 type AddIngredientProps = {
   setIngredients: React.Dispatch<React.SetStateAction<string[]>>;
   ingredients: string[];
+  token: string;
 };
 
 const AddIngredient: React.FC<AddIngredientProps> = ({
   setIngredients,
   ingredients,
+  token,
 }) => {
   const [input, setInput] = useState<string>("");
 
@@ -28,10 +31,31 @@ const AddIngredient: React.FC<AddIngredientProps> = ({
     handleInputSubmit();
   };
 
-  const handleInputSubmit = () => {
+  const handleInputSubmit = async () => {
     const formattedInput = input.trim().toLowerCase();
-    if (formattedInput && !ingredients.includes(formattedInput)) {
-      setIngredients((prevIngredients) => [...prevIngredients, formattedInput]);
+    if (
+      formattedInput &&
+      !ingredients.includes(formattedInput) &&
+      formattedInput.length > 0
+    ) {
+      try {
+        const { data } = await instance.post(
+          "/meals/ingredients",
+          {
+            name: formattedInput,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (data.name) {
+          setIngredients((prevIngredients) => [...prevIngredients, data.name]);
+        }
+      } catch (e) {
+        console.log("Error adding ingredient");
+      }
     }
     setInput("");
   };
