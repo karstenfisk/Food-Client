@@ -4,6 +4,8 @@ import instance from "@/instance";
 import { useRouter } from "next/navigation";
 import createToken from "@/token";
 
+import IngredientsToggle from "./IngredientsToggle";
+
 interface Macros {
   carbs: string | null;
   protein: string | null;
@@ -323,6 +325,7 @@ function GenerateRecipe() {
           </div>
         </form>
       )}
+      <IngredientsToggle />
     </>
   );
 }
