@@ -4,17 +4,6 @@ import AddIngredient from "@/components/AddIngredient";
 import IngredientContainer from "@/components/IngredientContainer";
 import { useSession } from "next-auth/react";
 import { getIngredients } from "@/utils/clientUtils";
-import { User } from "next-auth";
-const INGREDIENTS: string[] = [
-  "salt",
-  "pepper",
-  "ground beef",
-  "chicken breast",
-];
-interface TokenSession {
-  token: string;
-  user: User;
-}
 
 export default function Ingredients() {
   const { data: session, status } = useSession();

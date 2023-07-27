@@ -1,12 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import instance from "@/instance";
-
-type AddIngredientProps = {
-  setIngredients: React.Dispatch<React.SetStateAction<string[]>>;
-  ingredients: string[];
-  token: string;
-};
+import { AddIngredientProps } from "@/app/types";
 
 const AddIngredient: React.FC<AddIngredientProps> = ({
   setIngredients,

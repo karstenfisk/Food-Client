@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <div className="shadow-sm w-screen h-14 flex items-center justify-between">
       <Link href="/">
-        <h5 className="text-4xl font-sans font-bold font-main pl-5 italic tracking-tighter">
+        <h5 className="text-4xl font-bold font-main pl-5 italic tracking-tighter">
           Food
         </h5>
       </Link>

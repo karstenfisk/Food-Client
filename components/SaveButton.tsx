@@ -2,25 +2,7 @@
 import React from "react";
 import instance from "@/instance";
 import { AxiosError } from "axios";
-
-interface Macros {
-  carbs: string | null;
-  protein: string | null;
-  fats: string | null;
-  calories: string | null;
-}
-
-interface Meal {
-  title: string;
-  ingredients: string[];
-  instructions: string[];
-  macros: Macros;
-}
-
-interface SaveButtonProps {
-  token: string;
-  meal: Meal;
-}
+import { SaveButtonProps } from "@/app/types";
 
 const SaveButton: React.FC<SaveButtonProps> = ({ token, meal }) => {
   const handleSave = async () => {

@@ -1,9 +1,10 @@
 import { authOptions } from "@/app/options";
-import { getServerSession, Session, User } from "next-auth";
+import { getServerSession, User } from "next-auth";
 import { redirect } from "next/navigation";
+import { Session } from "@/app/types";
 
 async function getUser() {
-  const session: any = await getServerSession(authOptions);
+  const session: Session | null = await getServerSession(authOptions);
 
   if (session?.token) {
     const res = await fetch(`${process.env.API_BASE}/users/me`, {
@@ -14,6 +15,7 @@ async function getUser() {
     const user = await res.json();
     // Handle the response from the API
     if (res.ok && user) {
+      console.log(session);
       return user;
     } else {
       return undefined;
@@ -23,7 +25,6 @@ async function getUser() {
 
 export default async function User() {
   const data = await getUser();
-  console.log(data);
   if (data === undefined) {
     redirect("/login");
   }

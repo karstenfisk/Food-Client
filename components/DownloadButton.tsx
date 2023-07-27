@@ -1,13 +1,7 @@
 "use client";
 import React from "react";
 import { saveAs } from "file-saver";
-
-interface Macros {
-  carbs: string | null;
-  protein: string | null;
-  fats: string | null;
-  calories: string | null;
-}
+import { Macros } from "@/app/types";
 
 interface DownloadButtonProps {
   title: string;

@@ -2,27 +2,9 @@ import { getServerSession, User } from "next-auth";
 import { authOptions } from "../../options";
 import { redirect } from "next/navigation";
 import RecipeList from "@/components/SavedRecipe";
+import { Session, SavedMeal } from "@/app/types";
 
-interface Session {
-  user: User;
-  token: string;
-}
-
-interface Meal {
-  id: string;
-  title: string;
-  ingredients: string[];
-  instructions: string[];
-  protein: string | null;
-  fats: string | null;
-  carbohydrates: string | null;
-  calories: number | null;
-  createdAt: string;
-  updatedAt: string;
-  userId: string;
-}
-
-async function getRecipes(): Promise<Meal[] | null> {
+async function getRecipes(): Promise<SavedMeal[] | null> {
   const session: Session | null = await getServerSession(authOptions);
   if (!session) {
     redirect("/login");
@@ -35,7 +17,7 @@ async function getRecipes(): Promise<Meal[] | null> {
   });
   const data = await res.json();
   if (res.ok && data) {
-    const recipes: Meal[] = data;
+    const recipes: SavedMeal[] = data;
     return recipes;
   }
   alert("Error fetching saved recipes");
@@ -43,7 +25,7 @@ async function getRecipes(): Promise<Meal[] | null> {
 }
 
 export default async function Saved() {
-  const data: Meal[] | null = await getRecipes();
+  const data: SavedMeal[] | null = await getRecipes();
   return (
     <div className="p-12 pt-4 flex justify-center">
       {data && data?.length > 0 ? <RecipeList recipes={data} /> : null}

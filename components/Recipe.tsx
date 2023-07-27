@@ -1,19 +1,6 @@
 import React from "react";
 import DownloadButton from "./DownloadButton";
-
-interface Macros {
-  carbs: string | null;
-  protein: string | null;
-  fats: string | null;
-  calories: string | null;
-}
-
-interface Meal {
-  title: string;
-  ingredients: string[];
-  instructions: string[];
-  macros: Macros;
-}
+import { Macros, Meal } from "@/app/types";
 
 const RecipePage: React.FC<{ meal?: Meal }> = ({ meal }) => {
   if (!meal) {

@@ -4,43 +4,14 @@ import { getServerSession, User } from "next-auth";
 import { authOptions } from "../../options";
 import SaveButton from "@/components/SaveButton";
 import { redirect } from "next/navigation";
-
-interface Macros {
-  carbs: string | null;
-  protein: string | null;
-  fats: string | null;
-  calories: string | null;
-}
-
-interface Meal {
-  title: string;
-  ingredients: string[];
-  instructions: string[];
-  macros: Macros;
-}
-
-interface Recipe {
-  diet: string;
-  prepTime: string;
-  cuisine: string;
-  ingredients: string[];
-  macros: Macros;
-  servings: number;
-  type: string;
-}
-
-interface ISearchParams {
-  [key: string]: string | undefined;
-}
-
-interface Session {
-  user: User;
-  token: string;
-}
-
-interface Error {
-  message: string;
-}
+import {
+  Macros,
+  Meal,
+  Recipe,
+  ISearchParams,
+  Session,
+  Error,
+} from "@/app/types";
 
 const createResponse = (
   meal: Meal | null,

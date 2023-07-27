@@ -6,29 +6,7 @@ import createToken from "@/token";
 
 import IngredientsToggle from "./IngredientsToggle";
 
-interface Macros {
-  carbs: string | null;
-  protein: string | null;
-  fats: string | null;
-  calories: string | null;
-}
-
-interface Recipe {
-  diet: string;
-  prepTime: string;
-  cuisine: string;
-  ingredients: string[];
-  macros: Macros;
-  servings: number;
-  type: string;
-}
-
-interface Meal {
-  title: string;
-  ingredients: string[];
-  instructions: string[];
-  macros: Macros;
-}
+import { Macros, Recipe } from "@/app/types";
 
 function GenerateRecipe() {
   const [diet, setDiet] = useState<string>("Any");

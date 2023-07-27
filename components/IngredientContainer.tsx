@@ -1,12 +1,6 @@
 import React, { FC } from "react";
 import instance from "@/instance";
-
-type IngredientContainerProps = {
-  mode: "default" | "generator";
-  ingredients: string[];
-  setIngredients: React.Dispatch<React.SetStateAction<string[]>>;
-  token: string;
-};
+import { IngredientContainerProps } from "@/app/types";
 
 const IngredientContainer: FC<IngredientContainerProps> = ({
   mode,

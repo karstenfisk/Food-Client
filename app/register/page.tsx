@@ -3,13 +3,7 @@ import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import instance from "../../instance";
-
-interface RegisterData {
-  username: string;
-  email: string;
-  password: string;
-}
-
+import { RegisterData } from "@/app/types";
 export default function Login() {
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");

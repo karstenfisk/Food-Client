@@ -2,24 +2,7 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import Link from "next/link";
-
-interface Meal {
-  id: string;
-  title: string;
-  ingredients: string[];
-  instructions: string[];
-  protein: string | null;
-  fats: string | null;
-  carbohydrates: string | null;
-  calories: number | null;
-  createdAt: string;
-  updatedAt: string;
-  userId: string;
-}
-
-interface RecipeProps {
-  recipes?: Meal[];
-}
+import { RecipeProps } from "@/app/types";
 
 const RecipeList: React.FC<RecipeProps> = ({ recipes }) => {
   if (!recipes) {
