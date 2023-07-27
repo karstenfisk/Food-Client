@@ -15,7 +15,7 @@ async function getUser() {
     const user = await res.json();
     // Handle the response from the API
     if (res.ok && user) {
-      console.log(session);
+      console.log(user);
       return user;
     } else {
       return undefined;

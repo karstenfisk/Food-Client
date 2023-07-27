@@ -1,5 +1,6 @@
 import { User } from "next-auth";
 import { Dispatch, SetStateAction } from "react";
+import IngredientsToggle from "../components/IngredientsToggle";
 
 export interface TokenSession {
   token: string;
@@ -13,6 +14,20 @@ export interface Macros {
   calories: string | null;
 }
 
+export interface SavedMeal {
+  id: string;
+  title: string;
+  ingredients: string[];
+  instructions: string[];
+  protein: string | null;
+  fats: string | null;
+  carbohydrates: string | null;
+  calories: number | null;
+  createdAt: string;
+  updatedAt: string;
+  userId: string;
+}
+
 export interface Meal {
   title: string;
   ingredients: string[];
@@ -24,7 +39,7 @@ export interface Recipe {
   diet: string;
   prepTime: string;
   cuisine: string;
-  ingredients: string[];
+  ingredients: boolean;
   macros: Macros;
   servings: number;
   type: string;
@@ -83,4 +98,13 @@ export interface SaveButtonProps {
 
 export interface RecipeProps {
   recipes?: SavedMeal[];
+}
+
+export interface IngredientsToggleProps {
+  setIngredients: Dispatch<SetStateAction<boolean>>;
+  ingredients: boolean;
+}
+
+export interface GenerateRecipeProps {
+  sessionToken: string;
 }
